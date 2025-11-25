@@ -1,0 +1,19 @@
+# Microsoft Office temporary files
+~$*            # Các file tạm bắt đầu bằng ~$ như ~\$filename.xxx :contentReference[oaicite:0]{index=0}
+*.tmp          # các file tạm nói chung :contentReference[oaicite:1]{index=1}
+
+# Word
+~$*.doc*       # tạm / lock Word :contentReference[oaicite:2]{index=2}
+*.wbk          # backup Word :contentReference[oaicite:3]{index=3}
+
+# Excel
+~$*.xls*       # tạm Excel :contentReference[oaicite:4]{index=4}
+*.xlk          # file backup Excel :contentReference[oaicite:5]{index=5}
+
+# PowerPoint
+~$*.ppt*       # tạm PowerPoint :contentReference[oaicite:6]{index=6}
+
+# Office diagnostic / log hoặc cache
+Diagnostics/
+UploadCache/
+*.log          # nếu bạn muốn bỏ log Office :contentReference[oaicite:7]{index=7}
