@@ -1,0 +1,71 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Khách hàng" as KH
+actor "Thu ngân" as TN
+actor "Thủ kho" as TK
+actor "Kế toán" as KT
+actor "Quản lý (Admin)" as QL
+
+package "Hệ thống Quản lý Nhà sách" {
+    
+    usecase "Đăng nhập / Đăng xuất" as UC_Login
+    
+    ' Nhóm Bán hàng (Thu ngân)
+    usecase "Lập hóa đơn bán sách" as UC_BanHang
+    usecase "Tìm kiếm sách" as UC_TimSach
+    usecase "Áp mã giảm giá" as UC_GiamGia
+    usecase "Quản lý thông tin khách hàng" as UC_QLKH
+    usecase "Tích điểm khách hàng" as UC_TichDiem
+    
+    ' Nhóm Kho (Thủ kho)
+    usecase "Quản lý nhập kho" as UC_NhapKho
+    usecase "Kiểm kê / Sắp xếp kho" as UC_KiemKho
+    
+    ' Nhóm Kế toán
+    usecase "Thống kê doanh thu" as UC_TK_DoanhThu
+    usecase "Thống kê sách bán chạy" as UC_TK_BanChay
+    usecase "Đề xuất nhập hàng" as UC_DeXuatNhap
+    
+    ' Nhóm Quản trị (Quản lý)
+    usecase "Quản lý nhân viên & Phân quyền" as UC_QLNV
+    usecase "Quản lý thông tin sách (CRUD)" as UC_QLSach
+    usecase "Quản lý chương trình khuyến mãi" as UC_QLKM
+    usecase "Xem tất cả báo cáo" as UC_XemBaoCao
+
+}
+
+' Quan hệ Thu ngân
+TN -- UC_Login
+TN -- UC_BanHang
+TN -- UC_TimSach
+TN -- UC_QLKH
+UC_BanHang ..> UC_GiamGia : <<include>>
+UC_BanHang ..> UC_TichDiem : <<extend>>
+UC_BanHang ..> UC_TimSach : <<include>>
+
+' Quan hệ Khách hàng (Tác động vào việc mua hàng)
+KH -- UC_BanHang : Tham gia mua
+
+' Quan hệ Thủ kho
+TK -- UC_Login
+TK -- UC_NhapKho
+TK -- UC_KiemKho
+
+' Quan hệ Kế toán
+KT -- UC_Login
+KT -- UC_TK_DoanhThu
+KT -- UC_TK_BanChay
+KT -- UC_DeXuatNhap
+KT -- UC_KiemKho : Giám sát tồn
+
+' Quan hệ Quản lý (Có quyền cao nhất)
+QL -- UC_Login
+QL -- UC_QLNV
+QL -- UC_QLSach
+QL -- UC_QLKM
+QL -- UC_XemBaoCao
+QL -- UC_TK_DoanhThu
+
+@enduml

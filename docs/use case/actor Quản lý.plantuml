@@ -1,0 +1,35 @@
+@startuml
+left to right direction
+actor "Quản lý" as QL
+
+package "Phân hệ Quản trị" {
+    usecase "Đăng nhập hệ thống" as UC_Login
+    
+    package "Quản lý Người dùng" {
+        usecase "Thêm/Xóa nhân viên" as UC_QLNV
+        usecase "Phân quyền truy cập" as UC_PhanQuyen
+    }
+
+    package "Quản lý Danh mục" {
+        usecase "Thêm mới sách" as UC_ThemSach
+        usecase "Cập nhật thông tin sách" as UC_SuaSach
+        usecase "Ngừng kinh doanh sách" as UC_XoaSach
+        usecase "Tạo chương trình khuyến mãi" as UC_KhuyenMai
+    }
+
+    package "Báo cáo Tổng hợp" {
+        usecase "Xem báo cáo doanh thu" as UC_BaoCao
+        usecase "Kiểm tra hoạt động hệ thống" as UC_Log
+    }
+}
+
+QL --> UC_Login
+QL --> UC_QLNV
+QL --> UC_PhanQuyen
+QL --> UC_ThemSach
+QL --> UC_SuaSach
+QL --> UC_XoaSach
+QL --> UC_KhuyenMai
+QL --> UC_BaoCao
+QL --> UC_Log
+@enduml

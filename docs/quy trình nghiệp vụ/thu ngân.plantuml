@@ -1,0 +1,57 @@
+@startuml
+title Quy trình Bán hàng & Thanh toán
+skinparam ActivityBackgroundColor #FFF2CC
+
+|Thu ngân|
+start
+:Chọn chức năng "Lập hóa đơn";
+repeat
+    :Nhập từ khóa hoặc Quét mã sách;
+    |Hệ thống|
+    :Tìm kiếm sách;
+    :Kiểm tra tồn kho;
+    if (Còn hàng?) then (Có)
+        :Hiển thị thông tin sách & Giá;
+        |Thu ngân|
+        :Thêm vào giỏ hàng;
+    else (Hết hàng)
+        |Hệ thống|
+        :Thông báo hết hàng;
+    endif
+|Thu ngân|
+backward:Tiếp tục thêm sách;
+repeat while (Khách mua thêm?) is (Có)
+
+:Hỏi thông tin Khách hàng;
+if (Khách có thẻ thành viên?) then (Có)
+    :Nhập thông tin khách hàng;
+    |Hệ thống|
+    :Truy xuất điểm tích lũy & Lịch sử;
+else (Không)
+    :Bỏ qua hoặc Đăng ký mới;
+endif
+
+|Thu ngân|
+if (Có mã giảm giá?) then (Có)
+    :Nhập mã khuyến mãi;
+    |Hệ thống|
+    :Kiểm tra điều kiện áp dụng;
+    :Trừ tiền chiết khấu;
+endif
+
+|Hệ thống|
+:Tính tổng tiền & Thuế;
+|Thu ngân|
+:Nhận tiền & Xác nhận thanh toán;
+
+|Hệ thống|
+fork
+    :In hóa đơn;
+fork again
+    :Trừ kho tự động;
+fork again
+    :Cộng điểm tích lũy cho khách;
+end fork
+
+stop
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+title Quy trình Nhập kho Sách
+skinparam ActivityBackgroundColor #FFF2CC
+
+|Thủ kho|
+start
+:Đăng nhập hệ thống;
+:Chọn chức năng "Nhập kho";
+:Tạo Phiếu nhập mới;
+:Chọn hoặc Thêm Nhà cung cấp;
+
+repeat
+    :Tìm kiếm sách hoặc Thêm sách mới;
+    :Nhập số lượng thực tế;
+    :Nhập đơn giá nhập;
+|Thủ kho|
+backward:Nhập tiếp đầu sách khác;
+repeat while (Còn hàng cần nhập?) is (Có)
+
+:Kiểm tra tổng quan phiếu nhập;
+:Lưu phiếu nhập;
+
+|Hệ thống|
+:Lưu lịch sử nhập hàng;
+:Cộng dồn số lượng vào Kho;
+:Cập nhật giá vốn (nếu có);
+:Thông báo "Nhập kho thành công";
+
+stop
+@enduml

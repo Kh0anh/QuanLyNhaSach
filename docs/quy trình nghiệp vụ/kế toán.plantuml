@@ -1,0 +1,26 @@
+@startuml
+title Quy trình Thống kê & Đề xuất Nhập hàng
+skinparam ActivityBackgroundColor #FFF2CC
+
+|Kế toán|
+start
+:Truy cập module Thống kê - Báo cáo;
+fork
+    :Xem Báo cáo Doanh thu & Lợi nhuận;
+fork again
+    :Xem Thống kê Tồn kho;
+fork again
+    :Xem Thống kê Sách bán chạy;
+end fork
+
+|Kế toán|
+:Phân tích dữ liệu;
+if (Phát hiện sách bán chạy sắp hết hàng?) then (Có)
+    :Lập danh sách sách cần nhập;
+    :Gửi yêu cầu nhập hàng cho Quản lý/Kho;
+else (Không)
+    :Ghi nhận tình hình kinh doanh;
+endif
+
+stop
+@enduml
