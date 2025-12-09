@@ -58,7 +58,6 @@ KT -- UC_Login
 KT -- UC_TK_DoanhThu
 KT -- UC_TK_BanChay
 KT -- UC_DeXuatNhap
-KT -- UC_KiemKho : Giám sát tồn
 
 ' Quan hệ Quản lý (Có quyền cao nhất)
 QL -- UC_Login

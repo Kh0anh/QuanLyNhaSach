@@ -1,30 +1,63 @@
 @startuml
-title Quy trình Nhập kho Sách
 skinparam ActivityBackgroundColor #FFF2CC
 
 |Thủ kho|
 start
 :Đăng nhập hệ thống;
-:Chọn chức năng "Nhập kho";
-:Tạo Phiếu nhập mới;
-:Chọn hoặc Thêm Nhà cung cấp;
-
 repeat
-    :Tìm kiếm sách hoặc Thêm sách mới;
-    :Nhập số lượng thực tế;
-    :Nhập đơn giá nhập;
+    :Chọn chức năng kho (Nhập kho / Kiểm kê / Điều chỉnh tồn / Xem lịch sử);
+    if (Nhập kho?) then (Có)
+        :Chọn chức năng "Nhập kho";
+        :Tạo phiếu nhập mới;
+        :Chọn hoặc thêm Nhà cung cấp;
+        repeat
+            :Tìm kiếm sách hoặc thêm sách mới;
+            :Nhập số lượng thực tế;
+            :Nhập đơn giá nhập;
+        |Thủ kho|
+        backward:Nhập tiếp đầu sách khác;
+        repeat while (Còn hàng cần nhập?) is (Có)
+        :Kiểm tra tổng quan phiếu nhập;
+        :Lưu phiếu nhập;
+        |Hệ thống|
+        :Lưu lịch sử nhập hàng;
+        :Cộng dồn số lượng vào kho;
+        :Cập nhật giá vốn (nếu có);
+        :Thông báo "Nhập kho thành công";
+        |Thủ kho|
+    elseif (Kiểm kê?) then (Có)
+        :Chọn khu vực/kệ cần kiểm kê;
+        repeat
+            :Quét/nhập từng sách;
+            :Nhập số lượng đếm thực tế;
+            |Hệ thống|
+            :So sánh tồn kho sổ sách;
+            :Ghi nhận chênh lệch tạm;
+            |Thủ kho|
+        backward:Tiếp tục kiểm kê;
+        repeat while (Còn sách cần kiểm?) is (Có)
+        |Hệ thống|
+        :Tổng hợp biên bản kiểm kê;
+        :Lưu lịch sử kiểm kê;
+        |Thủ kho|
+    elseif (Điều chỉnh tồn?) then (Có)
+        :Chọn sách cần điều chỉnh;
+        :Chọn áp dụng chênh lệch từ kiểm kê hoặc nhập số mới;
+        |Hệ thống|
+        :Cập nhật số lượng kho;
+        :Ghi log điều chỉnh tồn;
+        |Thủ kho|
+        :Xác nhận điều chỉnh hoàn tất;
+    else (Xem lịch sử nhập hàng)
+        :Mở chức năng xem lịch sử nhập hàng;
+        :Chọn khoảng thời gian/nhà cung cấp/phiếu nhập;
+        |Hệ thống|
+        :Hiển thị lịch sử nhập hàng;
+        |Thủ kho|
+    endif
 |Thủ kho|
-backward:Nhập tiếp đầu sách khác;
-repeat while (Còn hàng cần nhập?) is (Có)
-
-:Kiểm tra tổng quan phiếu nhập;
-:Lưu phiếu nhập;
-
-|Hệ thống|
-:Lưu lịch sử nhập hàng;
-:Cộng dồn số lượng vào Kho;
-:Cập nhật giá vốn (nếu có);
-:Thông báo "Nhập kho thành công";
+backward:Chọn chức năng khác;
+repeat while (Tiếp tục công việc?) is (Có)
 
 stop
 @enduml

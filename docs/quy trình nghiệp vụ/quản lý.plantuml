@@ -1,5 +1,4 @@
 @startuml
-title Quy trình Quản trị Hệ thống (Sách & Nhân sự)
 skinparam ActivityBackgroundColor #FFF2CC
 
 |Quản lý|

@@ -1,5 +1,4 @@
 @startuml
-title Quy trình Đăng nhập & Điều hướng Hệ thống
 skinparam ActivityBackgroundColor #FFF2CC
 
 |Người dùng (Nhân viên/Quản lý)|

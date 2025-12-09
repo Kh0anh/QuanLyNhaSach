@@ -1,5 +1,4 @@
 @startuml
-title Quy trình Bán hàng & Thanh toán
 skinparam ActivityBackgroundColor #FFF2CC
 
 |Thu ngân|

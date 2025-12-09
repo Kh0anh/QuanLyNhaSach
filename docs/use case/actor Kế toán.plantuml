@@ -4,20 +4,26 @@ actor "Kế toán" as KT
 
 package "Phân hệ Kế toán & Báo cáo" {
     usecase "Đăng nhập hệ thống" as UC_Login
-    usecase "Thống kê doanh thu (Ngày/Tháng/Năm)" as UC_DoanhThu
-    usecase "Thống kê lợi nhuận" as UC_LoiNhuan
-    usecase "Thống kê sách bán chạy" as UC_BanChay
-    usecase "Theo dõi tồn kho" as UC_TonKho
-    usecase "Ra quyết định nhập hàng" as UC_QuyetDinh
+    usecase "Báo cáo Doanh thu & Lợi nhuận (chọn quý, tháng,...)" as UC_BaoCao
+    usecase "Thống kê Tồn kho & cảnh báo tồn thấp" as UC_TonKho
+    usecase "Thống kê Sách bán chạy/bán chậm" as UC_BanChay
+    usecase "Xem lịch sử nhập hàng & chi phí" as UC_LichSuNhap
+    usecase "Xuất Báo cáo (PDF/Excel)" as UC_XuatBaoCao
+    usecase "Đề xuất nhập hàng" as UC_DeXuatNhap
+    usecase "Báo cáo bất thường" as UC_BaoCaoBatThuong
 }
 
 KT --> UC_Login
-KT --> UC_DoanhThu
-KT --> UC_LoiNhuan
-KT --> UC_BanChay
+KT --> UC_BaoCao
 KT --> UC_TonKho
-KT --> UC_QuyetDinh
+KT --> UC_BanChay
+KT --> UC_LichSuNhap
+KT --> UC_DeXuatNhap
+KT --> UC_BaoCaoBatThuong
 
-UC_QuyetDinh ..> UC_TonKho : <<include>>
-UC_QuyetDinh ..> UC_BanChay : <<extend>>
+UC_BaoCao ..> UC_XuatBaoCao : <<extend>>
+UC_LichSuNhap ..> UC_XuatBaoCao : <<extend>>
+UC_TonKho ..> UC_DeXuatNhap : <<extend>>
+UC_BanChay ..> UC_DeXuatNhap : <<extend>>
+UC_BaoCao ..> UC_BaoCaoBatThuong : <<extend>>
 @enduml

@@ -19,6 +19,7 @@ package "Phân hệ Quản trị" {
 
     package "Báo cáo Tổng hợp" {
         usecase "Xem báo cáo doanh thu" as UC_BaoCao
+        usecase "Cảnh báo tồn kho" as UC_TonKho
         usecase "Kiểm tra hoạt động hệ thống" as UC_Log
     }
 }
@@ -32,4 +33,5 @@ QL --> UC_XoaSach
 QL --> UC_KhuyenMai
 QL --> UC_BaoCao
 QL --> UC_Log
+QL --> UC_TonKho
 @enduml
