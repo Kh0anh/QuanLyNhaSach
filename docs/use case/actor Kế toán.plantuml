@@ -11,6 +11,7 @@ package "Phân hệ Kế toán & Báo cáo" {
     usecase "Xuất Báo cáo (PDF/Excel)" as UC_XuatBaoCao
     usecase "Đề xuất nhập hàng" as UC_DeXuatNhap
     usecase "Báo cáo bất thường" as UC_BaoCaoBatThuong
+    usecase "Tạo chương trình khuyến mãi" as UC_KhuyenMai
 }
 
 KT --> UC_Login
@@ -20,6 +21,7 @@ KT --> UC_BanChay
 KT --> UC_LichSuNhap
 KT --> UC_DeXuatNhap
 KT --> UC_BaoCaoBatThuong
+KT --> UC_KhuyenMai
 
 UC_BaoCao ..> UC_XuatBaoCao : <<extend>>
 UC_LichSuNhap ..> UC_XuatBaoCao : <<extend>>

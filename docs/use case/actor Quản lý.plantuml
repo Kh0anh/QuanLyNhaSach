@@ -14,7 +14,6 @@ package "Phân hệ Quản trị" {
         usecase "Thêm mới sách" as UC_ThemSach
         usecase "Cập nhật thông tin sách" as UC_SuaSach
         usecase "Ngừng kinh doanh sách" as UC_XoaSach
-        usecase "Tạo chương trình khuyến mãi" as UC_KhuyenMai
     }
 
     package "Báo cáo Tổng hợp" {
@@ -30,7 +29,6 @@ QL --> UC_PhanQuyen
 QL --> UC_ThemSach
 QL --> UC_SuaSach
 QL --> UC_XoaSach
-QL --> UC_KhuyenMai
 QL --> UC_BaoCao
 QL --> UC_Log
 QL --> UC_TonKho

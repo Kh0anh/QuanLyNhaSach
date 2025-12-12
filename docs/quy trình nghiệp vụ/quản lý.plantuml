@@ -5,14 +5,13 @@ skinparam ActivityBackgroundColor #FFF2CC
 start
 :Truy cập Dashboard Quản trị;
 split
-    
     :Quản lý Sách;
     if (Hành động?) then (Thêm mới)
         :Nhập thông tin sách mới;
     elseif (Cập nhật)
         :Sửa thông tin sách;
     elseif (Ngừng kinh doanh)
-        :Xóa/Ẩn sách khỏi hệ thống;
+        :Xóa/ẩn sách khỏi hệ thống;
     endif
 split again
     :Quản lý Nhân sự;
@@ -21,14 +20,10 @@ split again
     else (Khóa/Sửa)
         :Cập nhật thông tin nhân viên;
     endif
-split again
-    :Quản lý Khuyến mãi;
-    :Tạo chương trình giảm giá mới;
-    :Thiết lập điều kiện áp dụng;
 end split
 
 |Hệ thống|
-:Cập nhật Cơ sở dữ liệu;
+:Cập nhật CSDL;
 :Ghi log hoạt động;
 stop
 @enduml

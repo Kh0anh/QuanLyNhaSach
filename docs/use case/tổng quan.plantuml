@@ -27,11 +27,11 @@ package "Hệ thống Quản lý Nhà sách" {
     usecase "Thống kê doanh thu" as UC_TK_DoanhThu
     usecase "Thống kê sách bán chạy" as UC_TK_BanChay
     usecase "Đề xuất nhập hàng" as UC_DeXuatNhap
+    usecase "Quản lý chương trình khuyến mãi" as UC_QLKM
     
     ' Nhóm Quản trị (Quản lý)
     usecase "Quản lý nhân viên & Phân quyền" as UC_QLNV
-    usecase "Quản lý thông tin sách (CRUD)" as UC_QLSach
-    usecase "Quản lý chương trình khuyến mãi" as UC_QLKM
+    usecase "Quản lý sách" as UC_QLSach
     usecase "Xem tất cả báo cáo" as UC_XemBaoCao
 
 }
@@ -58,12 +58,12 @@ KT -- UC_Login
 KT -- UC_TK_DoanhThu
 KT -- UC_TK_BanChay
 KT -- UC_DeXuatNhap
+KT -- UC_QLKM
 
 ' Quan hệ Quản lý (Có quyền cao nhất)
 QL -- UC_Login
 QL -- UC_QLNV
 QL -- UC_QLSach
-QL -- UC_QLKM
 QL -- UC_XemBaoCao
 QL -- UC_TK_DoanhThu
 

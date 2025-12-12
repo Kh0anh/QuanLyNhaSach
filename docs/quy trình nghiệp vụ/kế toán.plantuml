@@ -18,23 +18,30 @@ fork
     |Kế toán|
     :Xuất file PDF/Excel (nếu cần);
 fork again
-    :Mở Thống kê Tồn kho;
+    :Thống kê Tồn kho;
     |Hệ thống|
     :Hiển thị tồn hiện tại, cảnh báo tồn thấp;
     |Kế toán|
     :Đánh dấu đầu sách cần xem xét nhập;
 fork again
-    :Mở Thống kê Sách bán chạy / bán chậm;
+    :Thống kê Sách bán chạy / bán chậm;
     |Hệ thống|
     :Xếp hạng theo doanh thu & số lượng bán;
     |Kế toán|
-    :Đánh dấu hàng sắp hết hàng;
+    :Đánh dấu hàng sắp hết hoặc chậm luân chuyển;
 fork again
     :Xem Lịch sử nhập hàng & chi phí;
     |Hệ thống|
-    :Tổng hợp phiếu nhập theo nhà cung cấp/kỳ;
+    :Tổng hợp phiếu nhập theo NCC/kỳ;
     |Kế toán|
     :So chiếu chi phí nhập & doanh thu;
+fork again
+    :Quản lý khuyến mãi;
+    |Kế toán|
+    :Tạo/Chỉnh sửa chương trình khuyến mãi;
+    :Thiết lập điều kiện áp dụng (thời gian, mã, mức giảm);
+    |Hệ thống|
+    :Lưu/áp dụng chương trình, đồng bộ bán hàng;
 end fork
 
 |Kế toán|
