@@ -6,65 +6,87 @@ actor "Khách hàng" as KH
 actor "Thu ngân" as TN
 actor "Thủ kho" as TK
 actor "Kế toán" as KT
-actor "Quản lý (Admin)" as QL
+actor "Quản lý" as QL
 
 package "Hệ thống Quản lý Nhà sách" {
-    
-    usecase "Đăng nhập / Đăng xuất" as UC_Login
-    
-    ' Nhóm Bán hàng (Thu ngân)
-    usecase "Lập hóa đơn bán sách" as UC_BanHang
-    usecase "Tìm kiếm sách" as UC_TimSach
-    usecase "Áp mã giảm giá" as UC_GiamGia
-    usecase "Quản lý thông tin khách hàng" as UC_QLKH
-    usecase "Tích điểm khách hàng" as UC_TichDiem
-    
-    ' Nhóm Kho (Thủ kho)
-    usecase "Quản lý nhập kho" as UC_NhapKho
-    usecase "Kiểm kê / Sắp xếp kho" as UC_KiemKho
-    
-    ' Nhóm Kế toán
-    usecase "Thống kê doanh thu" as UC_TK_DoanhThu
-    usecase "Thống kê sách bán chạy" as UC_TK_BanChay
-    usecase "Đề xuất nhập hàng" as UC_DeXuatNhap
-    usecase "Quản lý chương trình khuyến mãi" as UC_QLKM
-    
-    ' Nhóm Quản trị (Quản lý)
-    usecase "Quản lý nhân viên & Phân quyền" as UC_QLNV
-    usecase "Quản lý sách" as UC_QLSach
-    usecase "Xem tất cả báo cáo" as UC_XemBaoCao
 
+    usecase "Đăng nhập / Đăng xuất" as UC_Login
+    usecase "Đổi mật khẩu" as UC_ChangePwd
+
+    ' Nhóm Bán hàng (Thu ngân)
+    usecase "Lập hóa đơn bán hàng" as UC_BanHang
+    usecase "Tìm kiếm / quét sách" as UC_TimSach
+    usecase "Áp mã giảm giá" as UC_GiamGia
+    usecase "Quản lý khách hàng" as UC_QLKH
+    usecase "Tích điểm khách hàng" as UC_TichDiem
+    usecase "In hóa đơn" as UC_InHoaDon
+
+    ' Nhập kho
+    usecase "Quản lý phiếu nhập" as UC_PhieuNhap
+
+    ' Danh mục sách
+    usecase "Quản lý sách" as UC_QLSach
+
+    ' Nhân sự
+    usecase "Quản lý nhân sự & phân quyền" as UC_QLNV
+
+    ' Khuyến mãi
+    usecase "Quản lý khuyến mãi" as UC_QLKM
+
+    ' Thống kê - báo cáo
+    usecase "Thống kê doanh thu & lợi nhuận" as UC_TK_DoanhThu
+    usecase "Kiểm kê hóa đơn" as UC_KK_HoaDon
+    usecase "Thống kê tồn kho" as UC_TK_TonKho
+    usecase "Thống kê sách bán chạy/chậm" as UC_TK_BanChay
+    usecase "Xem lịch sử nhập & chi phí" as UC_LichSuNhap
+    usecase "Đề xuất nhập hàng" as UC_DeXuatNhap
+    usecase "Xuất báo cáo (PDF/Excel)" as UC_XuatBC
 }
 
 ' Quan hệ Thu ngân
 TN -- UC_Login
+TN -- UC_ChangePwd
 TN -- UC_BanHang
-TN -- UC_TimSach
 TN -- UC_QLKH
-UC_BanHang ..> UC_GiamGia : <<include>>
-UC_BanHang ..> UC_TichDiem : <<extend>>
 UC_BanHang ..> UC_TimSach : <<include>>
+UC_BanHang ..> UC_GiamGia : <<extend>>
+UC_BanHang ..> UC_TichDiem : <<extend>>
+UC_BanHang ..> UC_InHoaDon : <<include>>
+UC_BanHang ..> UC_QLKH : <<extend>>
 
-' Quan hệ Khách hàng (Tác động vào việc mua hàng)
-KH -- UC_BanHang : Tham gia mua
+' Quan hệ Khách hàng (tham gia mua hàng)
+KH -- UC_BanHang
 
 ' Quan hệ Thủ kho
 TK -- UC_Login
-TK -- UC_NhapKho
-TK -- UC_KiemKho
+TK -- UC_ChangePwd
+TK -- UC_PhieuNhap
+TK -- UC_QLSach
+TK -- UC_LichSuNhap
 
 ' Quan hệ Kế toán
 KT -- UC_Login
+KT -- UC_ChangePwd
 KT -- UC_TK_DoanhThu
+KT -- UC_KK_HoaDon
+KT -- UC_TK_TonKho
 KT -- UC_TK_BanChay
+KT -- UC_LichSuNhap
 KT -- UC_DeXuatNhap
-KT -- UC_QLKM
+UC_TK_DoanhThu ..> UC_XuatBC : <<extend>>
+UC_LichSuNhap ..> UC_XuatBC : <<extend>>
+UC_TK_TonKho ..> UC_DeXuatNhap : <<extend>>
+UC_TK_BanChay ..> UC_DeXuatNhap : <<extend>>
+UC_KK_HoaDon ..> UC_XuatBC : <<extend>>
+UC_TK_DoanhThu ..> UC_KK_HoaDon : <<extend>>
 
-' Quan hệ Quản lý (Có quyền cao nhất)
+' Quan hệ Quản lý (quyền cao nhất)
 QL -- UC_Login
+QL -- UC_ChangePwd
 QL -- UC_QLNV
 QL -- UC_QLSach
-QL -- UC_XemBaoCao
+QL -- UC_QLKM
 QL -- UC_TK_DoanhThu
+QL -- UC_TK_TonKho
 
 @enduml

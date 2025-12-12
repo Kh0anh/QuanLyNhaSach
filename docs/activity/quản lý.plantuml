@@ -1,0 +1,35 @@
+@startuml
+skinparam ActivityBackgroundColor #FFF2CC
+
+|Quản lý|
+start
+:Đăng nhập và vào Dashboard quản trị;
+:Xem tổng quan doanh thu/bán hàng;
+
+split
+    :Quản lý Sách;
+    if (Hành động?) then (Thêm mới)
+        :Nhập thông tin sách mới;
+    elseif (Cập nhật)
+        :Sửa thông tin/giá bán/tồn kho;
+    elseif (Ngừng kinh doanh)
+        :Chuyển trạng thái ngừng bán/ẩn sách;
+    endif
+split again
+    :Quản lý Nhân sự;
+    if (Hành động?) then (Tạo tài khoản)
+        :Tạo user mới & phân quyền;
+    else (Cập nhật/Khóa)
+        :Cập nhật thông tin hoặc khóa tài khoản;
+    endif
+split again
+    :Quản lý Khuyến mãi;
+    :Tạo/chỉnh sửa chương trình giảm giá;
+    :Cấu hình điều kiện áp dụng & thời gian hiệu lực;
+end split
+
+|Hệ thống|
+:Cập nhật CSDL;
+:Ghi log hoạt động;
+stop
+@enduml

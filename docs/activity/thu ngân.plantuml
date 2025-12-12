@@ -1,0 +1,55 @@
+@startuml
+skinparam ActivityBackgroundColor #FFF2CC
+
+|Thu ngân|
+start
+:Đăng nhập & mở màn \"Lập hóa đơn\";
+repeat
+    :Quét mã/nhập từ khóa sách;
+    |Hệ thống|
+    :Tìm kiếm sách & kiểm tra tồn kho;
+    if (Còn hàng?) then (Có)
+        :Hiển thị thông tin & giá;
+        |Thu ngân|
+        :Thêm vào giỏ hàng;
+    else (Hết hàng)
+        |Hệ thống|
+        :Thông báo hết hàng, cho phép bỏ qua;
+    endif
+|Thu ngân|
+backward:Tiếp tục thêm sách;
+repeat while (Khách mua thêm?) is (Có)
+
+:Hỏi thông tin khách hàng (số ĐT/mã thành viên);
+if (Khách là thành viên?) then (Có)
+    :Nhập thông tin thành viên;
+    |Hệ thống|
+    :Truy xuất điểm tích lũy & lịch sử;
+else (Không)
+    :Bỏ qua hoặc đăng ký mới;
+endif
+
+|Thu ngân|
+if (Có mã khuyến mãi/điểm?) then (Có)
+    :Nhập mã khuyến mãi hoặc dùng điểm;
+    |Hệ thống|
+    :Kiểm tra điều kiện & tính chiết khấu;
+endif
+
+|Hệ thống|
+:Tính tổng tiền, thuế/phí, số tiền phải thu;
+|Thu ngân|
+:Chọn phương thức thanh toán;
+:Nhận tiền/xác nhận thanh toán;
+
+|Hệ thống|
+fork
+    :In hóa đơn;
+fork again
+    :Trừ kho tự động;
+fork again
+    :Cộng điểm tích lũy cho khách (nếu có);
+end fork
+
+stop
+@enduml

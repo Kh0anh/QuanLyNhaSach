@@ -2,30 +2,31 @@
 left to right direction
 actor "Kế toán" as KT
 
-package "Phân hệ Kế toán & Báo cáo" {
+package "Phần hệ Kế toán & Báo cáo" {
     usecase "Đăng nhập hệ thống" as UC_Login
-    usecase "Báo cáo Doanh thu & Lợi nhuận (chọn quý, tháng,...)" as UC_BaoCao
+    usecase "Báo cáo Doanh thu & Lợi nhuận (chọn kỳ)" as UC_BaoCao
+    usecase "Kiểm kê hóa đơn" as UC_KiemKe
     usecase "Thống kê Tồn kho & cảnh báo tồn thấp" as UC_TonKho
     usecase "Thống kê Sách bán chạy/bán chậm" as UC_BanChay
     usecase "Xem lịch sử nhập hàng & chi phí" as UC_LichSuNhap
     usecase "Xuất Báo cáo (PDF/Excel)" as UC_XuatBaoCao
     usecase "Đề xuất nhập hàng" as UC_DeXuatNhap
     usecase "Báo cáo bất thường" as UC_BaoCaoBatThuong
-    usecase "Tạo chương trình khuyến mãi" as UC_KhuyenMai
 }
 
 KT --> UC_Login
 KT --> UC_BaoCao
+KT --> UC_KiemKe
 KT --> UC_TonKho
 KT --> UC_BanChay
 KT --> UC_LichSuNhap
 KT --> UC_DeXuatNhap
 KT --> UC_BaoCaoBatThuong
-KT --> UC_KhuyenMai
 
 UC_BaoCao ..> UC_XuatBaoCao : <<extend>>
 UC_LichSuNhap ..> UC_XuatBaoCao : <<extend>>
 UC_TonKho ..> UC_DeXuatNhap : <<extend>>
 UC_BanChay ..> UC_DeXuatNhap : <<extend>>
 UC_BaoCao ..> UC_BaoCaoBatThuong : <<extend>>
+UC_KiemKe ..> UC_BaoCaoBatThuong : <<extend>>
 @enduml

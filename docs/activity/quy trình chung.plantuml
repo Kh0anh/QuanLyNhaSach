@@ -4,33 +4,33 @@ skinparam ActivityBackgroundColor #FFF2CC
 |Người dùng (Nhân viên/Quản lý)|
 start
 :Truy cập Website Quản lý nhà sách;
-:Nhập Tên đăng nhập & Mật khẩu;
+:Nhập tên đăng nhập & mật khẩu;
 
 |Hệ thống|
 :Kiểm tra thông tin xác thực;
-if (Thông tin hợp lệ?) then (Đúng)
-    :Lấy thông tin Vai trò (Role);
-    if (Vai trò là gì?) then 
+if (Hợp lệ?) then (Có)
+    :Lấy thông tin vai trò;
+    if (Vai trò là gì?) then
         ->Quản lý;
-        :Hiển thị Dashboard Quản trị (Admin);
+        :Hiển thị Dashboard quản trị & thống kê;
     elseif (Thu ngân) then
-        :Hiển thị Giao diện Bán hàng (POS);
+        :Hiển thị giao diện bán hàng (POS);
     elseif (Thủ kho) then
-        :Hiển thị Giao diện Quản lý Kho;
+        :Hiển thị giao diện quản lý kho;
     elseif (Kế toán) then
-        :Hiển thị Báo cáo & Thống kê;
+        :Hiển thị màn báo cáo & thống kê;
     else
-        :Báo lỗi quyền truy cập;
+        :Thông báo không có quyền truy cập;
         stop
     endif
-else (Sai)
+else (Không)
     :Thông báo lỗi đăng nhập;
     :Yêu cầu nhập lại;
     detach
 endif
 
 |Người dùng (Nhân viên/Quản lý)|
-:Thực hiện các chức năng nghiệp vụ;
+:Thực hiện các chức năng nghiệp vụ theo quyền;
 :Đăng xuất;
 
 |Hệ thống|

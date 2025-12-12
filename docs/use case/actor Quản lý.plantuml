@@ -2,34 +2,46 @@
 left to right direction
 actor "Quản lý" as QL
 
-package "Phân hệ Quản trị" {
+package "Phần hệ Quản trị" {
     usecase "Đăng nhập hệ thống" as UC_Login
-    
-    package "Quản lý Người dùng" {
-        usecase "Thêm/Xóa nhân viên" as UC_QLNV
-        usecase "Phân quyền truy cập" as UC_PhanQuyen
+    usecase "Đổi mật khẩu" as UC_ChangePwd
+
+    package "Quản lý nhân sự" {
+        usecase "Tạo tài khoản nhân viên" as UC_TaoNV
+        usecase "Cập nhật/khóa tài khoản" as UC_CapNhatNV
+        usecase "Phân quyền vai trò" as UC_PhanQuyen
+        usecase "Cấp lại mật khẩu mặc định" as UC_ResetPwd
     }
 
-    package "Quản lý Danh mục" {
-        usecase "Thêm mới sách" as UC_ThemSach
-        usecase "Cập nhật thông tin sách" as UC_SuaSach
-        usecase "Ngừng kinh doanh sách" as UC_XoaSach
+    package "Quản lý sách" {
+        usecase "Thêm sách mới" as UC_ThemSach
+        usecase "Cập nhật thông tin/tồn kho" as UC_SuaSach
+        usecase "Ngừng kinh doanh/ẩn sách" as UC_NgungKD
     }
 
-    package "Báo cáo Tổng hợp" {
-        usecase "Xem báo cáo doanh thu" as UC_BaoCao
-        usecase "Cảnh báo tồn kho" as UC_TonKho
-        usecase "Kiểm tra hoạt động hệ thống" as UC_Log
+    package "Khuyến mãi" {
+        usecase "Tạo chương trình giảm giá" as UC_KM_Tao
+        usecase "Thiết lập điều kiện áp dụng & thời gian" as UC_KM_DieuKien
+    }
+
+    package "Thống kê" {
+        usecase "Xem doanh thu" as UC_XemDoanhThu
+        usecase "Xem tồn kho cảnh báo" as UC_XemTonKho
     }
 }
 
 QL --> UC_Login
-QL --> UC_QLNV
+QL --> UC_ChangePwd
+QL --> UC_TaoNV
+QL --> UC_CapNhatNV
 QL --> UC_PhanQuyen
+QL --> UC_ResetPwd
 QL --> UC_ThemSach
 QL --> UC_SuaSach
-QL --> UC_XoaSach
-QL --> UC_BaoCao
-QL --> UC_Log
-QL --> UC_TonKho
+QL --> UC_NgungKD
+QL --> UC_KM_Tao
+QL --> UC_XemDoanhThu
+QL --> UC_XemTonKho
+
+UC_KM_Tao ..> UC_KM_DieuKien : <<include>>
 @enduml

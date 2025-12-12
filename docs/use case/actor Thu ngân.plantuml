@@ -3,14 +3,14 @@ left to right direction
 actor "Thu ngân" as TN
 actor "Khách hàng" as KH
 
-package "Phân hệ Bán hàng" {
+package "Phần hệ Bán hàng" {
     usecase "Đăng nhập hệ thống" as UC_Login
     usecase "Lập hóa đơn bán hàng" as UC_BanHang
-    usecase "Tìm kiếm sách nhanh" as UC_TimKiem
+    usecase "Tìm kiếm/Quét sách" as UC_TimKiem
     usecase "Áp dụng mã giảm giá" as UC_Voucher
     usecase "In hóa đơn" as UC_In
-    usecase "Đăng ký/Tìm khách hàng thân thiết" as UC_KhachHang
-    usecase "Tích điểm tích lũy" as UC_TichDiem
+    usecase "Quản lý/Tra cứu khách hàng" as UC_KhachHang
+    usecase "Tích điểm khách hàng" as UC_TichDiem
 }
 
 TN --> UC_Login
@@ -19,8 +19,9 @@ TN --> UC_KhachHang
 
 UC_BanHang ..> UC_TimKiem : <<include>>
 UC_BanHang ..> UC_Voucher : <<extend>>
-UC_BanHang ..> UC_TichDiem : <<include>>
+UC_BanHang ..> UC_TichDiem : <<extend>>
 UC_BanHang ..> UC_In : <<include>>
+UC_BanHang ..> UC_KhachHang : <<extend>>
 
 KH -- UC_BanHang : Nhận hóa đơn
 @enduml

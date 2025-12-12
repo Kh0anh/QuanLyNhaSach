@@ -2,12 +2,12 @@
 left to right direction
 actor "Thủ kho" as TK
 
-package "Phân hệ Kho hàng" {
+package "Phần hệ Kho hàng" {
     usecase "Đăng nhập hệ thống" as UC_Login
     usecase "Tạo phiếu nhập sách" as UC_NhapKho
     usecase "Ghi nhận nhà cung cấp" as UC_NCC
     usecase "Kiểm kê hàng tồn kho" as UC_KiemKe
-    usecase "Cập nhật số lượng kho" as UC_CapNhat
+    usecase "Điều chỉnh tồn kho" as UC_CapNhat
     usecase "Sắp xếp hàng hóa" as UC_SapXep
     usecase "Xem lịch sử nhập hàng" as UC_LichSu
 }
@@ -15,6 +15,7 @@ package "Phân hệ Kho hàng" {
 TK --> UC_Login
 TK --> UC_NhapKho
 TK --> UC_KiemKe
+TK --> UC_CapNhat
 TK --> UC_SapXep
 TK --> UC_LichSu
 

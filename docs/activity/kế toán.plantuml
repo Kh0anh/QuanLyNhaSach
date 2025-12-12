@@ -1,0 +1,54 @@
+@startuml
+skinparam ActivityBackgroundColor #FFF2CC
+
+|Kế toán|
+start
+:Đăng nhập hệ thống;
+:Chọn kỳ xem báo cáo (ngày/tháng/quý);
+
+|Kế toán|
+fork
+    :Xem báo cáo Doanh thu & Lợi nhuận;
+    |Hệ thống|
+    :Hiển thị doanh thu, chi phí, lợi nhuận theo kỳ;
+    :Cho phép đào sâu theo hóa đơn/nhân viên/kênh bán;
+    |Kế toán|
+    :Xuất PDF/Excel (nếu cần);
+fork again
+    :Kiểm kê hóa đơn;
+    |Hệ thống|
+    :Liệt kê hóa đơn theo kỳ, trạng thái;
+    |Kế toán|
+    :Đánh dấu hóa đơn cần đối soát;
+fork again
+    :Thống kê Tồn kho;
+    |Hệ thống|
+    :Hiển thị tồn hiện tại, cảnh báo tồn thấp;
+    |Kế toán|
+    :Ghi chú đầu sách cần xem xét nhập;
+fork again
+    :Thống kê Sách bán chạy/bán chậm;
+    |Hệ thống|
+    :Xếp hạng theo doanh thu & số lượng bán;
+    |Kế toán|
+    :Ghi chú đầu sách sắp hết hoặc chậm luân chuyển;
+fork again
+    :Xem Lịch sử nhập hàng & chi phí;
+    |Hệ thống|
+    :Tổng hợp phiếu nhập theo NCC/kỳ;
+    |Kế toán|
+    :So chiếu chi phí nhập & doanh thu;
+end fork
+
+|Kế toán|
+if (Đầu sách sắp hết/cần nhập?) then (Có)
+    :Lập đề xuất nhập hàng gửi Quản lý/Thủ kho;
+elseif (Phát hiện doanh thu/chi phí bất thường?) then (Có)
+    :Lập ghi chú đối soát;
+    :Gửi báo cáo bất thường cho Quản lý;
+else
+    :Ghi nhận tình hình kinh doanh kỳ này;
+endif
+
+stop
+@enduml
